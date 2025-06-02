@@ -76,3 +76,19 @@ with st.expander('Data preparation'):
   input_row
   st.write('**Encoded y**')   
   y
+
+# Model training and inference
+## Model training
+clf = RandomForestClassifier()
+clf.fit(X, y)
+
+## Apply model to make predictions
+prediction = clf.predict(input_row)
+prediction_proba = clf.predict_proba(input_row)
+
+df_prediction_proba = pd.DataFrame(prediction_proba)
+df_prediction_proba.columns = ['Adelie', 'Chinstrap', 'Gentoo']
+df_prediction_proba.rename(columns={0: 'Adelie',
+                                    1: 'Chinstrap',
+                                    2: 'Gentoo'})
+df_prediction_proba   
